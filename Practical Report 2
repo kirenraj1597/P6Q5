@@ -1,0 +1,64 @@
+#include <iostream>
+#include <ctime> //for random number
+
+using namespace std;
+
+int main()
+{
+	//Declaring variables
+	int guess_no;			// the number the user will guess	
+	int attempts = 0;		// attempts for guessing
+
+	//put seed for random number
+	//generate random number and save into varirable
+	srand(time(0));
+	int random_no = rand() % 5 + 1;
+
+	//header for program
+	cout << "The Number Guessing Game\n\n";
+
+	//Display output
+	cout << "I am thinking of number between 1 and 5";
+	cout << "\nCan you guess what is it?\t";
+	cin >> guess_no;
+	if (guess_no > 5 || guess_no <= 0)
+	{
+		//to inform user to use only certain numbers
+		cout << "\nPlease enter a number between 1 and 5 ONLY!" << endl;
+
+	}
+
+	//Processing and Output
+	while (attempts < 2) // loops 3 times as our attempt initialized at 0
+	{
+		if (guess_no == random_no)
+		{
+			cout << "Congratulations! You did it." << endl;
+			//to inform user how many tries they took
+			cout << "It only took you " << attempts + 1 << " guess(es).\n";
+			return 0;
+		}
+		else
+		{
+			cout << "Not this. Please try again.\t";
+			cin >> guess_no;
+			attempts++;
+			if (guess_no > 5 || guess_no <= 0)
+			{
+				//to inform user to use only certain numbers
+				cout << "Please enter a number between 1 and 5 ONLY!" << endl;
+			}
+
+		}
+		if (guess_no != random_no && attempts == 2)
+		{
+			//shows user what was the random number
+			cout << "Sorry :( The number was " << random_no << ".";
+			cout << "\nBetter luck next time.\n";
+
+		}
+	}
+
+	return 0;
+
+}
